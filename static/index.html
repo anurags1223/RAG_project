@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#062843"><title>PDF Chat</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='28'%3E👒%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<svg class="icon-defs" xmlns="http://www.w3.org/2000/svg"><defs>
+ <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+ <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 11a9 9 0 0 1-9 9 10 10 0 0 1-4-.8L3 21l1.8-5A9 9 0 1 1 21 11Z"/></symbol>
+ <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 2H5v20h14V7Z M14 2v6h5M8 13h8M8 17h6"/></symbol>
+ <symbol id="i-upload" viewBox="0 0 24 24"><path d="M7 17H5a4 4 0 0 1-.5-8 7 7 0 0 1 13-2A5 5 0 0 1 19 17h-2M12 22V11m-4 4 4-4 4 4"/></symbol>
+ <symbol id="i-settings" viewBox="0 0 24 24"><path d="m9 3 1-2h4l1 2 3 2 2-.2 2 4-1.5 2v3l1.5 2-2 4-2-.2-3 2-1 2h-4l-1-2-3-2-2 .2-2-4 1.5-2v-3L2 9l2-4 2 .2Z"/><circle cx="12" cy="12" r="3"/></symbol>
+ <symbol id="i-send" viewBox="0 0 24 24"><path d="m3 10 18-7-7 18-3-8-8-3Z M11 13 21 3"/></symbol>
+ <symbol id="i-close" viewBox="0 0 24 24"><path d="m5 5 14 14M5 19 19 5"/></symbol>
+ <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></symbol>
+ <symbol id="i-copy" viewBox="0 0 24 24"><rect x="7" y="7" width="14" height="14" rx="2"/><path d="M16 7V3H3v13h4"/></symbol>
+ <symbol id="i-trash" viewBox="0 0 24 24"><path d="M3 6h18M9 6V3h6v3M6 6l1 15h10l1-15M10 10v7M14 10v7"/></symbol>
+ <symbol id="i-link" viewBox="0 0 24 24"><path d="M14 3h7v7M21 3 10 14M10 3H3v18h18v-7"/></symbol>
+ <symbol id="i-stop" viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="1"/></symbol>
+ <symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16 8-2 6-6 2 2-6Z"/></symbol>
+ <symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></symbol>
+</defs></svg>
+<div class="app">
+ <aside class="sidebar" id="sidebar">
+  <button class="icon-button sidebar-close" id="sidebar-close" aria-label="Close sidebar"><svg><use href="#i-close"/></svg></button>
+  <div class="flag-space" aria-label="Straw Hat pirate flag"></div>
+  <button class="new-chat" id="new-chat"><svg><use href="#i-plus"/></svg>New chat<span class="ribbon"></span></button>
+  <nav><button id="history-button"><svg><use href="#i-chat"/></svg>Conversations</button><button id="library-button"><svg><use href="#i-file"/></svg>Documents</button></nav>
+  <div class="documents-heading"><span>DOCUMENTS</span><button class="icon-button" id="add-file" aria-label="Add PDF"><svg><use href="#i-plus"/></svg></button></div>
+  <div id="document-list" class="document-list"></div>
+  <button class="upload-zone" id="upload-zone"><svg><use href="#i-upload"/></svg><span>Upload PDFs</span><small>Drop files here · up to 30 MB each</small></button>
+  <input id="file-input" type="file" accept="application/pdf,.pdf" multiple hidden>
+  <div class="sidebar-bottom"><label class="provider-picker"><span class="status-dot" id="status-dot"></span><select id="provider-select" aria-label="Model provider"><option value="ollama">Ollama</option><option value="lmstudio">LM Studio</option></select></label><button class="icon-button" id="settings-button" aria-label="Settings"><svg><use href="#i-settings"/></svg></button></div>
+ </aside>
+ <main class="workspace">
+  <header class="chat-header"><div><button class="icon-button mobile-menu" id="menu-button" aria-label="Toggle sidebar"><svg><use href="#i-menu"/></svg></button><span class="hat" aria-hidden="true">👒</span><h1>Chat</h1></div><select id="model-select" aria-label="Chat model"><option value="">Choose model</option></select></header>
+  <div class="summary-toolbar"><div><strong>Understand your PDFs</strong><span>Overview, key points & visual explanations</span></div><button id="summarize-button" class="primary-button" type="button">Summarize <span aria-hidden="true">↗</span></button></div>
+  <section id="messages" class="messages" aria-label="Conversation" aria-live="polite"></section>
+  <div class="compose-area"><div id="activity" role="status"></div><form id="chat-form" class="composer"><button type="button" id="attach-button" class="icon-button" aria-label="Attach PDF"><svg><use href="#i-file"/></svg></button><textarea id="question" rows="1" placeholder="Ask about your documents…" aria-label="Your question"></textarea><button type="submit" id="send-button" class="send-button" aria-label="Send question"><svg><use href="#i-send"/></svg></button></form><div class="compose-meta"><button id="selection-button">All ready documents</button><span id="connection-text">Checking server…</span></div></div>
+ </main>
+ <aside id="source-panel" class="source-panel">
+  <header><h2><span aria-hidden="true">☸</span> Source preview</h2><button class="icon-button" id="close-source" aria-label="Close source preview"><svg><use href="#i-close"/></svg></button></header>
+  <div id="source-content" class="source-content"><div class="source-empty"><svg><use href="#i-file"/></svg><h3>Your sources appear here</h3><p>Select a citation in an answer to inspect the passage and PDF page.</p></div></div>
+ </aside>
+</div>
+<button id="reopen-source" class="reopen-source" hidden>Source preview <svg><use href="#i-file"/></svg></button>
+<dialog id="settings-dialog"><form id="settings-form"><div class="dialog-heading"><h2>Settings</h2><button type="button" class="icon-button" data-close aria-label="Close settings"><svg><use href="#i-close"/></svg></button></div><p class="dialog-description">Choose the models running on your computer.</p>
+ <label>Chat provider<select name="provider"><option value="ollama">Ollama</option><option value="lmstudio">LM Studio</option></select></label>
+ <label>Chat model<input name="chat_model" placeholder="Exact model identifier" required list="model-options"></label><datalist id="model-options"></datalist>
+ <div class="form-row"><label>Ollama server<input name="ollama_url" required></label><label>LM Studio server<input name="lmstudio_url" required></label></div>
+ <hr><h3>Document search</h3><div class="form-row"><label>Embedding provider<select name="embedding_provider"><option value="ollama">Ollama</option><option value="lmstudio">LM Studio</option></select></label><label>Embedding model<input name="embedding_model" required placeholder="nomic-embed-text"></label></div>
+ <p class="field-note">Use the exact embedding model identifier from your server. Changing it requires re-indexing your PDFs.</p>
+ <div class="form-row"><label>Retrieved passages<input name="top_k" type="number" min="1" max="8" required></label><label>Maximum answer tokens<input name="max_tokens" type="number" min="64" max="2048" required></label></div>
+ <p class="field-note">For faster answers, keep 4 passages and 512 tokens. In LM Studio, enable GPU offload and load both models.</p>
+ <div class="dialog-footer"><button type="button" class="plain-button" id="test-connection">Test saved connection</button><button class="primary-button" type="submit">Save settings</button></div><p id="settings-status" role="status"></p>
+ </form></dialog>
+<dialog id="library-dialog"><div class="dialog-heading"><h2>Documents</h2><button class="icon-button" data-close aria-label="Close documents"><svg><use href="#i-close"/></svg></button></div><p class="dialog-description">Select the files to use for your next question.</p><div id="library-list"></div><div class="dialog-footer"><button class="plain-button" id="select-all">Select all ready PDFs</button><button class="primary-button" id="library-upload">Upload PDFs</button></div></dialog>
+<dialog id="history-dialog"><div class="dialog-heading"><h2>Conversations</h2><button class="icon-button" data-close aria-label="Close conversations"><svg><use href="#i-close"/></svg></button></div><div id="history-list"></div></dialog>
+<div id="toast" role="status" hidden></div>
+<script src="/summary.js" defer></script>
+<script src="/app.js" defer></script>
+</body></html>

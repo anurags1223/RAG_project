@@ -1,0 +1,87 @@
+%PDF-1.3
+%‚„œ”
+1 0 obj
+<<
+/Producer (pypdf)
+>>
+endobj
+2 0 obj
+<<
+/Type /Pages
+/Count 1
+/Kids [ 4 0 R ]
+>>
+endobj
+3 0 obj
+<<
+/Type /Catalog
+/Pages 2 0 R
+>>
+endobj
+4 0 obj
+<<
+/Type /Page
+/Resources <<
+/Font <<
+/F1 5 0 R
+>>
+>>
+/MediaBox [ 0.0 0.0 612 792 ]
+/Parent 2 0 R
+/Contents 6 0 R
+>>
+endobj
+5 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/BaseFont /Helvetica
+>>
+endobj
+6 0 obj
+<<
+/Length 1282
+>>
+stream
+BT /F1 12 Tf 50 735 Td
+/F1 24 Tf (A short guide to RAG) Tj 0 -25 Td
+/F1 12 Tf (Retrieval-augmented generation) Tj 0 -25 Td
+/F1 12 Tf () Tj 0 -25 Td
+/F1 12 Tf (RAG helps a language model answer questions using your documents.) Tj 0 -25 Td
+/F1 12 Tf (It has three main steps:) Tj 0 -25 Td
+/F1 12 Tf () Tj 0 -25 Td
+/F1 15 Tf (1. Retrieve relevant passages) Tj 0 -25 Td
+/F1 12 Tf (The system searches the document index for text related to your question.) Tj 0 -25 Td
+/F1 12 Tf (Embeddings represent meaning as numerical vectors for similarity search.) Tj 0 -25 Td
+/F1 12 Tf () Tj 0 -25 Td
+/F1 15 Tf (2. Build context) Tj 0 -25 Td
+/F1 12 Tf (The retrieved passages are included alongside your question in the prompt.) Tj 0 -25 Td
+/F1 12 Tf (Only a small number of useful passages need to be sent to the model.) Tj 0 -25 Td
+/F1 12 Tf () Tj 0 -25 Td
+/F1 15 Tf (3. Generate a grounded answer) Tj 0 -25 Td
+/F1 12 Tf (The local language model writes an answer using the supplied context.) Tj 0 -25 Td
+/F1 12 Tf (Source references let you check the original document and page.) Tj 0 -25 Td
+/F1 12 Tf () Tj 0 -25 Td
+/F1 12 Tf (This application uses PyPDF, LangChain, ChromaDB, and a local model server.) Tj 0 -25 Td
+/F1 12 Tf (Both Ollama and LM Studio can supply local models.) Tj 0 -25 Td
+ET
+endstream
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000015 00000 n 
+0000000054 00000 n 
+0000000113 00000 n 
+0000000162 00000 n 
+0000000294 00000 n 
+0000000364 00000 n 
+trailer
+<<
+/Size 7
+/Root 3 0 R
+/Info 1 0 R
+>>
+startxref
+1698
+%%EOF

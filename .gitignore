@@ -1,0 +1,16 @@
+.venv/
+data/
+__pycache__/
+.pytest_cache/
+*.log
+.downloads/
+artifacts/
+.env
+.env.*
+!.env.example
+*.gguf
+*.safetensors
+*.pt
+*.pth
+scripts/diagnose_import.py
+scripts/finish_lmstudio.py
